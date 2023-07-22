@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/homeStyle.css">
+    <script src="https://kit.fontawesome.com/5610710b06.js" crossorigin="anonymous"></script>
+    <title>ToDO App</title>
+</head>
+<body>
+    <div id="container">
+        <div id="heading">
+            <h1>TODO App</h1>
+        </div>
+        <hr no-shade>
+        <div id="form">
+            <form action="/form_input" method="post">
+                <input type="text" placeholder="Description" name="description" id="desc">
+                <select name="Category" id="Ct">
+                    <option value="personal">Personal</option>
+                    <option value="Work">Work</option>
+                </select>
+                <input type="date" name="due_date" id="date">
+                <hr>
+                <button type="submit" id="add-task"><i class="fa-solid fa-plus">&nbsp;</i>Add Task</button>
+            </form>
+            
+        </div>
+        <div id="list-of-tasks">
+            <ul type="none">
+                <% for(var i=0; i<todo_list.length; i++){%>
+                <li>
+                    <div id="li-1">
+                        <div id="li-desc">
+                            <input type="checkbox" name="checked" id="ch-box">
+                            <%= todo_list[i].description%>
+                        </div>
+                        <div id="right">
+                            <div id="li-cat">
+                                <%= todo_list[i].Category%><br>
+                            </div>
+                            <div id="cross">
+                                <a href="/deleteTask/?task=<%= todo_list[i].id%>"><button type="submit"><i class="fa-solid fa-xmark"></i></button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="date" style="margin-left: 1.8rem; font-size: 1rem;"><%= todo_list[i].due_date%></div>
+                    <hr style="margin-left: -40px;">
+                </li>
+                <%}%>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
